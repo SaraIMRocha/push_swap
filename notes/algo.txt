@@ -1,0 +1,20 @@
+This algorithm has some resemblance to the Insertion Sort algorithm.
+Insertion Sort is a simple comparison-based sorting algorithm that builds the final
+sorted array one element at a time.
+
+In my algorithm, the elements are initially pushed onto a second stack in a
+specific order, which is similar to how Insertion Sort operates by dividing the input
+into a sorted and an unsorted region. Then, the algorithm iterates over the elements of
+the second stack, determining the optimal moves and transferring elements back to the first
+stack, which is similar to how Insertion Sort compares each element with the already sorted
+region and inserts it into its correct position.
+
+However, there are significant differences between my algorithm and Insertion Sort.
+In Insertion Sort, the sorting is typically done in-place by shifting elements, whereas
+your algorithm uses two stacks for sorting. Additionally, Insertion Sort has a time
+complexity of O(N^2) in the worst case, while my algorithm's time complexity is also
+approximately O(N^2) but with a different set of operations.
+
+So, while my algorithm shares some similarities with Insertion Sort in terms of the
+iterative element placement, it is not identical or equivalent to any well-known sorting
+algorithm. It combines specific operations and characteristics that are unique to its approach.
