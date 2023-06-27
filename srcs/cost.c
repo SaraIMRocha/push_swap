@@ -6,7 +6,7 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:44 by sara              #+#    #+#             */
-/*   Updated: 2023/06/26 02:08:25 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/27 17:52:15 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ void	cost(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-/* least_moves:
-*	Finds the element in stack B with the cheapest cost to move to stack A
-*	and moves it to the correct placeition in stack A.
-*/
 void	least_moves(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;

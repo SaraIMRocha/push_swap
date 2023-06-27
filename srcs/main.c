@@ -6,16 +6,12 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:42 by sara              #+#    #+#             */
-/*   Updated: 2023/06/26 01:59:44 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/27 17:52:37 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/* is_sorted:
-*	Checks if a stack is sorted.
-*	Returns 0 if the stack is not sorted, 1 if it is sorted.
-*/
 int	is_sorted(t_stack *stack)
 {
 	while (stack->next != NULL)
@@ -27,10 +23,6 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-/* push_swap:
-*	Chooses a sorting method depending on the number
-*	of values to be sorted.
-*/
 static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
 	if (stack_size == 2 && !is_sorted(*stack_a))
@@ -41,11 +33,6 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 		sort(stack_a, stack_b);
 }
 
-/* main:
-*	Checks if the input is correct, in which case it initializes stacks a and b,
-*	assigns each value indexes and sorts the stacks. When sorting is done, frees
-*	the stacks and exits.
-*/
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;

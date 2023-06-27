@@ -6,15 +6,12 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:50:04 by sara              #+#    #+#             */
-/*   Updated: 2023/06/26 03:41:15 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/27 17:54:32 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/* ft_free:
-*	Frees each element in a given stack and sets the stack pointer to NULL.
-*/
 void	ft_free(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -30,10 +27,6 @@ void	ft_free(t_stack **stack)
 	*stack = NULL;
 }
 
-/* ft_error:
-*   Writes "Error\n" to the standard output after freeing stack a and b.
-*	Exits with standard error code 1.
-*/
 void	ft_error(t_stack **stack_a, t_stack **stack_b)
 {
 	if (stack_a == NULL || *stack_a != NULL)
@@ -44,9 +37,6 @@ void	ft_error(t_stack **stack_a, t_stack **stack_b)
 	exit (1);
 }
 
-/* ft_atoi:
-*   Converts an alphanumeric string of characters into a long integer.
-*/
 long int	ft_atoi(const char *str)
 {
 	long int	num;

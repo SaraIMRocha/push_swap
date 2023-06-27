@@ -6,7 +6,7 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:38 by sara              #+#    #+#             */
-/*   Updated: 2023/06/26 04:22:43 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/27 17:51:55 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,17 @@
 int	ft_is_digit(char c)
 {
 	if (c >= '0' && c <= '9')
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
 int	ft_is_sign(char c)
 {
 	if (c == '+' || c == '-')
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
-/* compare_n_str:
-*   Compares two strings of digits to check if they are the same or not.
-*   If one of the strings starts with a '+' sign, it is ignored and the rest
-*   of the number string is checked.
-*   This is so that +123 == 123 but -123 != 123.
-*   Return: 0 if the strings match, another value if they do not.
-*/
 int	compare_n_str(const char *s1, const char *s2)
 {
 	int	i;

@@ -6,16 +6,12 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:40 by sara              #+#    #+#             */
-/*   Updated: 2023/06/26 03:00:51 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/27 17:52:24 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/* add_vals_stack:
-*	Fills stack_a with the provided values.
-*	If the values are out of integer range, prints and error and exits the program.
-*/
 t_stack	*add_vals_stack(int argc, char **argv)
 {
 	t_stack		*stack_a;
@@ -39,14 +35,6 @@ t_stack	*add_vals_stack(int argc, char **argv)
 	return (stack_a);
 }
 
-/* give_place:
-*	Assigns an index to each value in stack a. This is a convenient way to order
-*	the stack because indexes can be checked and compared instead of actual values,
-*	which may or may not be adjacent to each other.
-*		ex. values:		-3	 0	 9	 2
-*		indexes:		[1]	[2]	[4]	[3]
-*	The indexes are assigned from big_index (size) to lowest (1).
-*/
 void	give_place(t_stack *stack_a, int size)
 {
 	t_stack	*ptr;
