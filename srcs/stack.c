@@ -6,7 +6,7 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:59 by sara              #+#    #+#             */
-/*   Updated: 2023/06/27 17:54:09 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/27 18:26:31 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,17 @@ void	add_at_the_end(t_stack **stack, t_stack *new)
 
 int	stack_size(t_stack	*stack)
 {
-	int	size;
+	int		size;
+	t_stack	*current;
 
-	size = 0;
-	if (!stack)
+	size = 1;
+	current = stack->next;
+	if (stack == NULL)
 		return (0);
-	while (stack)
+	while (current != NULL)
 	{
-		stack = stack->next;
 		size++;
+		current = current->next;
 	}
 	return (size);
 }
