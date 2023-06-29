@@ -6,7 +6,7 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:59 by sara              #+#    #+#             */
-/*   Updated: 2023/06/27 18:26:31 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/29 06:15:54 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@ t_stack	*get_last_value(t_stack *stack)
 
 t_stack	*get_penultimate(t_stack *stack)
 {
-	while (stack && stack->next && stack->next->next != NULL)
+	int	size;
+	int	i;
+
+	size = stack_size(stack);
+	i = -1;
+	while (++i < size - 2)
 		stack = stack->next;
 	return (stack);
 }
