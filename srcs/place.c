@@ -6,7 +6,7 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:47 by sara              #+#    #+#             */
-/*   Updated: 2023/06/27 17:52:53 by sara             ###   ########.fr       */
+/*   Updated: 2023/06/29 06:35:18 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,33 @@ int	get_min_index(t_stack **stack)
 }
 
 static int	find_smaller_index(t_stack **a, int b_idx,
-								int target_idx, int target_pos)
+								int num_index, int num_place)
 {
 	t_stack	*tmp_a;
 
 	tmp_a = *a;
 	while (tmp_a)
 	{
-		if (tmp_a->i > b_idx && tmp_a->i < target_idx)
+		if (tmp_a->i > b_idx && tmp_a->i < num_index)
 		{
-			target_idx = tmp_a->i;
-			target_pos = tmp_a->place;
+			num_index = tmp_a->i;
+			num_place = tmp_a->place;
 		}
 		tmp_a = tmp_a->next;
 	}
-	if (target_idx != INT_MAX)
-		return (target_pos);
+	if (num_index != INT_MAX)
+		return (num_place);
 	tmp_a = *a;
 	while (tmp_a)
 	{
-		if (tmp_a->i < target_idx)
+		if (tmp_a->i < num_index)
 		{
-			target_idx = tmp_a->i;
-			target_pos = tmp_a->place;
+			num_index = tmp_a->i;
+			num_place = tmp_a->place;
 		}
 		tmp_a = tmp_a->next;
 	}
-	return (target_pos);
+	return (num_place);
 }
 
 void	find_final_place(t_stack **a, t_stack **b)
