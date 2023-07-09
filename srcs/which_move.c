@@ -6,11 +6,18 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:50:05 by sara              #+#    #+#             */
-/*   Updated: 2023/06/27 17:54:55 by sara             ###   ########.fr       */
+/*   Updated: 2023/07/09 03:17:04 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/* rr_a_and_b:
+ * Performs rotating reverse operations on stacks A and B until both cost_a and
+ * cost_b become non-negative. This adjusts the positions of objects in both
+ * stacks to match their desired final positions.
+ */
+
 
 static void	rr_a_and_b(t_stack **a, t_stack **b,
 												int *cost_a, int *cost_b)
@@ -23,6 +30,12 @@ static void	rr_a_and_b(t_stack **a, t_stack **b,
 	}
 }
 
+/* r_a_and_b:
+ * Performs rotating operations on stacks A and B until both cost_a and cost_b
+ * become non-positive. This adjusts the positions of objects in both stacks
+ * to match their desired final positions.
+ */
+
 static void	r_a_and_b(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
@@ -32,6 +45,12 @@ static void	r_a_and_b(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 		rr(a, b);
 	}
 }
+
+/* r_a:
+ * Performs rotating operations on stack A until the cost becomes zero. This
+ * adjusts the position of an object in stack A to match its desired final
+ * position.
+ */
 
 static void	r_a(t_stack **a, int *cost)
 {
@@ -50,6 +69,13 @@ static void	r_a(t_stack **a, int *cost)
 	}
 }
 
+/* r_b:
+ * Performs rotating operations on stack B until the cost becomes zero. This
+ * adjusts the position of an object in stack B to match its desired final
+ * position.
+ */
+
+
 static void	r_b(t_stack **b, int *cost)
 {
 	while (*cost)
@@ -66,6 +92,13 @@ static void	r_b(t_stack **b, int *cost)
 		}
 	}
 }
+
+/* which_move:
+ * Determines the appropriate move(s) based on the values of cost_a and cost_b,
+ * and performs the necessary rotations on stacks A and B to adjust the
+ * positions of objects. Finally, it pushes the top object from stack B to
+ * stack A.
+ */
 
 void	which_move(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {

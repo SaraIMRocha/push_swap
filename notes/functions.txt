@@ -41,6 +41,88 @@ Gets the current position of the element with the lowest index within a stack.
 *	the "end" of the stack.
 */
 
+*****
+COST
+void	cost(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
+	int		size_a;
+	int		size_b;
+
+	tmp_a = *stack_a;
+	tmp_b = *stack_b;
+	size_a = stack_size(tmp_a);
+	size_b = stack_size(tmp_b);
+	while (tmp_b)
+	{
+		tmp_b->cost_b = tmp_b->place;
+		if (tmp_b->place > size_b / 2)
+			tmp_b->cost_b = (size_b - tmp_b->place) * -1;
+		tmp_b->cost_a = tmp_b->final_place;
+		if (tmp_b->final_place > size_a / 2)
+			tmp_b->cost_a = (size_a - tmp_b->final_place) * -1;
+		tmp_b = tmp_b->next;
+	}
+}
+The cost function calculates the cost values for each element in stack_b. The cost values represent the number of rotations needed to move an element from its current position in stack_b to its final position in stack_a. The function takes stack_a and stack_b as parameters.
+
+Here's a step-by-step explanation of how the function works:
+
+    Initialize temporary variables tmp_a and tmp_b to point to the start of stack_a and stack_b, respectively.
+    Calculate the sizes of stack_a and stack_b using the stack_size function and store the values in size_a and size_b.
+    Start a loop that iterates through each element in stack_b.
+    For the current element (tmp_b), calculate its cost of moving in stack_b by assigning the cost_b value to its current position (place).
+    If the current position of the element (place) is greater than the halfway point of stack_b (size_b / 2), it means the element is closer to the bottom. In this case, update the cost_b value to be the negative of the distance from the end of stack_b.
+    Calculate the cost of moving the element from stack_b to its final position in stack_a. Assign the cost_a value to the element's final_place.
+    Similar to step 5, if the final position of the element (final_place) is greater than the halfway point of stack_a (size_a / 2), it means the element is closer to the bottom. In this case, update the cost_a value to be the negative of the distance from the end of stack_a.
+    Move to the next element in stack_b by updating tmp_b to point to its next node.
+    Repeat steps 4-8 until all elements in stack_b have been processed.
+
+
+*****
+Least_moves
+
+void	least_moves(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*tmp;
+	int		cheapest;
+	int		cost_a;
+	int		cost_b;
+
+	tmp = *stack_b;
+	cheapest = INT_MAX;
+	while (tmp)
+	{
+		if (abs(tmp->cost_a) + abs(tmp->cost_b) < abs(cheapest))
+		{
+			cheapest = abs(tmp->cost_b) + abs(tmp->cost_a);
+			cost_a = tmp->cost_a;
+			cost_b = tmp->cost_b;
+		}
+		tmp = tmp->next;
+	}
+	which_move(stack_a, stack_b, cost_a, cost_b);
+}
+
+The least_moves function determines the most cost-effective move from stack_b to stack_a based on the calculated cost values of the elements in stack_b. It takes stack_a and stack_b as parameters.
+
+Here's a breakdown of how the function works:
+
+    Declare and initialize temporary variables: tmp to point to the start of stack_b, cheapest to store the current cheapest move cost, and cost_a and cost_b to track the cost values of the cheapest move.
+    Set cheapest to the maximum possible value (INT_MAX) initially, indicating that no move cost has been evaluated yet.
+    Start a loop that iterates through each element in stack_b.
+    For the current element (tmp), calculate the total move cost by adding the absolute values of its cost_a and cost_b.
+    Compare the total move cost to the current cheapest value using abs function. If the total move cost is smaller, update cheapest to the new cost value and store the cost_a and cost_b values of the current element.
+    Move to the next element in stack_b by updating tmp to point to its next node.
+    Repeat steps 4-6 until all elements in stack_b have been processed.
+    Once the loop finishes, cheapest contains the smallest total move cost among the elements in stack_b, and cost_a and cost_b store the cost values of the corresponding element that yields the cheapest move.
+    Call the which_move function, passing stack_a, stack_b, cost_a, and cost_b as arguments to perform the determined move.
+
+
+
+
+
     find_final_place:
 Assigns a target position in stack A to each element of stack B based on the element's index.
 
@@ -55,12 +137,29 @@ Brings the bottom element of a stack to the top.
 
     rra, rrb, and rrr:
 Perform reverse rotations on stack A, stack B, or both.
-
     rotate:
 Sends the top element of the stack to the bottom.
-
     ra, rb, and rr:
 Perform rotations on stack A, stack B, or both.
+
+These functions are performing specific rotations and updates on the cost values (cost_a and cost_b) based on the movement of elements between two stacks (a and b). Here's a breakdown of each function:
+
+    rr_a_and_b: This function rotates both stacks a and b in reverse (rrr operation) while simultaneously decrementing the cost values (cost_a and cost_b) until both cost values become non-negative (greater than or equal to zero). It is used when both cost values are initially negative and need to be reduced to zero.
+    r_a_and_b: This function rotates both stacks a and b in the normal direction (rr operation) while simultaneously decrementing the cost values (cost_a and cost_b) until both cost values become non-positive (less than or equal to zero). It is used when both cost values are initially positive and need to be reduced to zero.
+    r_a: This function rotates only stack a while adjusting the cost value (cost) based on its sign. If cost is positive, it performs a regular rotation (ra operation) and decrements cost by one. If cost is negative, it performs a reverse rotation (rra operation) and increments cost by one. It continues rotating until cost becomes zero.
+    r_b: This function works similarly to r_a, but it operates on stack b instead. It rotates stack b and adjusts the cost value (cost) based on its sign. If cost is positive, it performs a regular rotation (rb operation) and decrements cost by one. If cost is negative, it performs a reverse rotation (rrb operation) and increments cost by one. It continues rotating until cost becomes zero.
+
+These functions are part of a larger algorithm that determines the optimal moves to be performed on the stacks based on the calculated cost values. By using these rotation functions, the algorithm can adjust the cost values and execute the necessary rotations to achieve the desired stack arrangement.
+
+--> The purpose of making the costs zero in this context.
+The costs associated with the objects in the stacks represent their relative positions or distances from their desired final positions. The goal is to minimize these costs, as it indicates that the objects are closer to their intended locations.
+In the which_move function, there are several helper functions (rr_a_and_b, r_a_and_b, r_a, and r_b) that perform rotations to adjust the positions of the objects. By rotating the stacks, we can effectively move objects around and potentially reduce their costs.
+The reason for making the costs zero is to ensure that the objects are in their desired final positions. When the costs become zero, it means that the objects have reached their optimal positions in relation to their final destinations. By achieving this, we can ensure that the objects are correctly sorted or organized according to the desired criteria.
+The which_move function utilizes different rotation operations to adjust the positions of the objects in the stacks and minimize their costs. By making the costs zero, we aim to achieve the desired arrangement of the objects in the stacks based on their costs.
+In summary, the process of making the costs zero is a step towards achieving the desired organization or sorting of the objects, as indicated by their relative positions. It helps optimize the arrangement and improve the overall efficiency of the algorithm or program.
+If the cost_a or cost_b is positive, it means that the corresponding object needs to be moved in the forward direction (usually rotating or shifting towards the top of the stack) to reach its desired final position. Conversely, if the cost_a or cost_b is negative, it means that the object needs to be moved in the reverse direction (usually rotating or shifting towards the bottom of the stack) to reach its desired final position.
+The magnitude of the cost indicates the distance or number of steps required to move the object to its desired position. By adjusting the costs through rotations and movements, the objects are gradually repositioned until their costs become zero, signifying that they have reached their intended final positions.
+
 
     get_big_index:
 Returns the maximum index in a stack.
@@ -70,9 +169,34 @@ Sorts a stack of 3 numbers in 2 or fewer moves based on indexes.
 
     keep_last_3:
 Pushes all elements of stack A into stack B, except the last three.
+explanation of the keep_last_3 function:
+    Calculate the size of stack_a using the stack_size function. This will give us the total number of elements in stack_a.
+    Initialize variables go_b and i to 0. These variables will keep track of the number of elements moved to stack_b and the iteration count, respectively.
+    Enter a while loop with the condition size > 6 && i < size && go_b < size / 2. This loop will execute as long as there are more than 6 elements in stack_a, i is less than the size of stack_a, and the number of elements moved to stack_b is less than half the size of stack_a.
+    Within the loop, check if the value of the current top element in stack_a ((*stack_a)->i) is less than or equal to size / 2. This condition is used to determine whether to move the element to stack_b or rotate it within stack_a.
+    If the condition is true, move the element to stack_b using the pb function and increment go_b by 1.
+    If the condition is false, rotate the element to the top of stack_a using the ra function.
+    Increment i by 1 to keep track of the number of iterations.
+    After the while loop, another while loop begins with the condition size - go_b > 3. This loop will execute as long as there are more than 3 elements remaining in stack_a after moving elements to stack_b.
+    Within this loop, move the top element of stack_a to stack_b using the pb function and increment go_b by 1.
+    Finally, the keep_last_3 function completes, and control returns to the calling function.
+
 
     organize_stack:
 Shifts stack A until the lowest value is at the top.
+explanation of the organize_stack function:
+    Retrieve the index of the smallest element in stack_a using the get_min_index function. This index represents the position of the smallest element within the stack.
+    Calculate the size of stack_a using the stack_size function. This gives us the total number of elements in stack_a.
+    Determine if the index of the smallest element (index_of_smaller_n) is greater than half the size of stack_a. This condition checks if the smallest element is in the bottom half of the stack.
+    If the condition is true, initialize the variable rotations to the difference between the size of stack_a and index_of_smaller_n. This represents the number of rotations required to bring the smallest element to the top.
+    Enter a while loop with the condition rotations > 0. This loop will execute as long as there are rotations remaining.
+    Within the loop, perform a reverse rotate operation on stack_a using the rra function, and decrement rotations by 1.
+    If the condition in step 4 is false, it means the smallest element is in the top half of stack_a.
+    In this case, initialize the variable rotations to the value of index_of_smaller_n. This represents the number of rotations required to bring the smallest element to the top.
+    Enter a while loop with the condition rotations > 0. This loop will execute as long as there are rotations remaining.
+    Within the loop, perform a rotate operation on stack_a using the ra function, and decrement rotations by 1.
+    Finally, the organize_stack function completes, and control returns to the calling function.
+
 
     sort:
 Sorting algorithm for a stack larger than 3. Pushes elements to stack B, sorts the remaining elements

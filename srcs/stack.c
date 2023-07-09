@@ -6,12 +6,13 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:59 by sara              #+#    #+#             */
-/*   Updated: 2023/06/29 06:15:54 by sara             ###   ########.fr       */
+/*   Updated: 2023/07/09 03:25:08 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+// Returns the last element in the stack
 t_stack	*get_last_value(t_stack *stack)
 {
 	while (stack && stack->next != NULL)
@@ -19,6 +20,7 @@ t_stack	*get_last_value(t_stack *stack)
 	return (stack);
 }
 
+// Returns the penultimate (second-to-last) element in the stack
 t_stack	*get_penultimate(t_stack *stack)
 {
 	int	size;
@@ -31,6 +33,7 @@ t_stack	*get_penultimate(t_stack *stack)
 	return (stack);
 }
 
+// Creates a new stack element with the specified value and initializes its attributes
 t_stack	*create_new_stack(int value)
 {
 	t_stack	*new;
@@ -48,6 +51,7 @@ t_stack	*create_new_stack(int value)
 	return (new);
 }
 
+// Adds a new stack element at the end of the stack
 void	add_at_the_end(t_stack **stack, t_stack *new)
 {
 	t_stack	*last_value;
@@ -63,6 +67,7 @@ void	add_at_the_end(t_stack **stack, t_stack *new)
 	last_value->next = new;
 }
 
+// Returns the size (number of elements) in the stack
 int	stack_size(t_stack	*stack)
 {
 	int		size;

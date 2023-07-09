@@ -6,11 +6,16 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:40 by sara              #+#    #+#             */
-/*   Updated: 2023/06/27 17:52:24 by sara             ###   ########.fr       */
+/*   Updated: 2023/07/09 04:01:48 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+// Creates and returns a stack 'stack_a' populated with integer values from the command line arguments 'argc' and 'argv'
+// Converts each argument to a long integer using 'ft_atoi' function and checks for overflow/underflow errors
+// Allocates memory for each element using 'create_new_stack' function and adds it to 'stack_a' using 'add_at_the_end' function
+// Returns the created 'stack_a'
 
 t_stack	*add_vals_stack(int argc, char **argv)
 {
@@ -34,6 +39,12 @@ t_stack	*add_vals_stack(int argc, char **argv)
 	}
 	return (stack_a);
 }
+
+// Assigns a unique 'i' value to each element in the 'stack_a' based on its position and value
+// 'size' represents the total number of elements in the 'stack_a'
+// Iterates 'size' times, finding the element with the largest value ('big_index') that has not been assigned an 'i' value
+// Assigns 'size' as the 'i' value to 'big_index'
+// Decrements 'size' for the next iteration
 
 void	give_place(t_stack *stack_a, int size)
 {

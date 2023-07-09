@@ -6,12 +6,13 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:47 by sara              #+#    #+#             */
-/*   Updated: 2023/06/29 06:35:18 by sara             ###   ########.fr       */
+/*   Updated: 2023/07/09 03:56:03 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+// Sets the 'place' field for each element in the stack
 static void	get_place(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -27,6 +28,7 @@ static void	get_place(t_stack **stack)
 	}
 }
 
+// Returns the index of the smallest value in the stack
 int	get_min_index(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -49,6 +51,10 @@ int	get_min_index(t_stack **stack)
 	return (low_place);
 }
 
+// Finds the smallest index position in stack A that satisfies the condition:
+// greater than 'b_idx' and smaller than 'num_index'
+// If such an index is found, returns its corresponding 'num_place' value
+// If no such index is found, returns the 'num_place' value of the smallest element in stack A
 static int	find_smaller_index(t_stack **a, int b_idx,
 								int num_index, int num_place)
 {
@@ -79,6 +85,7 @@ static int	find_smaller_index(t_stack **a, int b_idx,
 	return (num_place);
 }
 
+// Finds the final placement position for each element in stack B based on stack A
 void	find_final_place(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp_b;

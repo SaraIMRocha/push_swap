@@ -6,11 +6,17 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:36 by sara              #+#    #+#             */
-/*   Updated: 2023/06/27 17:52:08 by sara             ###   ########.fr       */
+/*   Updated: 2023/07/09 04:06:31 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/* check_if_number:
+ * Checks if the given argument is a valid number.
+ * Returns 1 if it is a valid number, 0 otherwise.
+ */
+
 
 static int	check_if_number(char *argv)
 {
@@ -25,6 +31,11 @@ static int	check_if_number(char *argv)
 		return (0);
 	return (1);
 }
+
+/* check_if_repeated:
+ * Checks if there are repeated arguments in the input array.
+ * Returns 1 if there are repeated arguments, 0 otherwise.
+ */
 
 static int	check_if_repeated(char **argv)
 {
@@ -46,6 +57,11 @@ static int	check_if_repeated(char **argv)
 	return (0);
 }
 
+/* check_zeros:
+ * Checks if the given argument consists of only zeros.
+ * Returns 1 if it contains only zeros, 0 otherwise.
+ */
+
 static int	check_zeros(char *argv)
 {
 	int	i;
@@ -59,6 +75,11 @@ static int	check_zeros(char *argv)
 		return (0);
 	return (1);
 }
+
+/* is_correct_input:
+ * Validates if the input arguments are correct.
+ * Returns 1 if the input is correct, 0 otherwise.
+ */
 
 int	is_correct_input(char **argv)
 {

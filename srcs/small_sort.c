@@ -6,12 +6,13 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 02:49:55 by sara              #+#    #+#             */
-/*   Updated: 2023/06/27 17:53:39 by sara             ###   ########.fr       */
+/*   Updated: 2023/07/09 03:47:59 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+// Returns the index of the maximum value in the stack
 static int	get_big_index(t_stack *stack)
 {
 	int		index;
@@ -26,6 +27,7 @@ static int	get_big_index(t_stack *stack)
 	return (index);
 }
 
+// Performs a small sorting algorithm on the stack
 void	small_sort(t_stack **stack)
 {
 	int		max_index;
